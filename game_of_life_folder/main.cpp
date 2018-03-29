@@ -2,15 +2,15 @@
 #include <iomanip>
 #include "life.h"
 
-#define H 30 //Define height
-#define W 30 //Define width
+#define Y 30 //Define height
+#define X 1 //Define width
 using namespace std;
 
 void swap(life * mata, life * matb) //Replaces first matrix with second
 {
-     for (int m = 0; m < H; m++)
+     for (int m = 0; m < X; m++)
      {
-         for (int n = 0; n < W; n++)
+         for (int n = 0; n < Y; n++)
          {
              if(matb->get_cell_life(m, n))
              {
@@ -26,15 +26,19 @@ void swap(life * mata, life * matb) //Replaces first matrix with second
 
 void print(life * array) //Prints matrix to screen
 {
-     cout << setw(3) << " ";
-     for (unsigned int p = 0; 5*p < array->array_w; p++) cout << setw(5) << 5*p+1;
+//     cout << setw(3) << " ";
+//     for (unsigned int p = 0; 5*p < array->array_w; p++) cout << setw(5) << 5*p+1;
      cout << endl;
      for (unsigned int m = 0; m < array->array_h; m++)
      {
          cout << setw(3) << m+1;
          for (unsigned int n = 0; n < array->array_w; n++)
          {
-             if (array->array[m][n])
+             if(! n % 5)
+             {
+                 cout << "|";
+             }
+             if (array->array[n][m])
              {
                  cout << "\xDB";
              }
@@ -51,8 +55,8 @@ int main()
 {
     int x, y, cont; //Used for user input
 
-    life * now = new life(H, W);
-    life * next = new life(H, W);
+    life * now = new life(X, Y);
+    life * next = new life(X, Y);
 
     cout << "The Rules of Life:" << endl;
     cout << "1. Any live cell with fewer than two live neighbors dies, as if by loneliness." << endl;
@@ -74,7 +78,7 @@ int main()
             break; //User is done inputting
         }
         cin >> y;
-        now->set_cell_alive(y-1, x-1); //Sets cell to alive
+        now->set_cell_alive(x-1, y-1); //Sets cell to alive
         print(now); //Updates screen
     }while(x != -1);
 

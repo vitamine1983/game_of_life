@@ -23,7 +23,7 @@ life::life(unsigned int x, unsigned int y)
 
 void life::clr() //Sets matrix to all dead
 {
-    for (unsigned int m = 0; m < this->array_h; m++)
+    for (unsigned int m = 0; m < this->array_w; m++)
     {
         for (unsigned int n = 0; n < this->array_h; n++)
         {
@@ -62,20 +62,20 @@ bool life::get_cell_life(unsigned int x, unsigned int y)
 void life::clclt(life * array)
 {
      unsigned int neighbors;
-     for (unsigned int m = 0; m < this->array_h; m++)
+     for (unsigned int m = 0; m < this->array_w; m++)
      {
-         for (unsigned int n = 0; n < this->array_w; n++)
+         for (unsigned int n = 0; n < this->array_h; n++)
          {
              neighbors = 0;
              //Begin counting number of neighbors:
              if (((int)m-1 >=0 ) && ((int)n-1 >= 0) && (this->array[m-1][n-1] == true)) {neighbors += 1;}
              if (((int)m-1 >=0 ) 			  && (this->array[m-1][n  ] == true)) {neighbors += 1;}
-             if (((int)m-1 >=0 ) && (n+1 < this->array_w)  && (this->array[m-1][n+1] == true)) {neighbors += 1;}
+             if (((int)m-1 >=0 ) && (n+1 < this->array_h)  && (this->array[m-1][n+1] == true)) {neighbors += 1;}
              if (              ((int)n-1 >= 0) && (this->array[m  ][n-1] == true)) {neighbors += 1;}
-             if (              (n+1 < this->array_w)  && (this->array[m  ][n+1] == true)) {neighbors += 1;}
-             if ((m+1 < this->array_h ) && ((int)n-1 >= 0) && (this->array[m+1][n-1] == true)) {neighbors += 1;}
-             if ((m+1 < this->array_h )               && (this->array[m+1][n  ] == true)) {neighbors += 1;}
-             if ((m+1 < this->array_h ) && (n+1 < this->array_w)  && (this->array[m+1][n+1] == true)) {neighbors += 1;}
+             if (              (n+1 < this->array_h)  && (this->array[m  ][n+1] == true)) {neighbors += 1;}
+             if ((m+1 < this->array_w ) && ((int)n-1 >= 0) && (this->array[m+1][n-1] == true)) {neighbors += 1;}
+             if ((m+1 < this->array_w )               && (this->array[m+1][n  ] == true)) {neighbors += 1;}
+             if ((m+1 < this->array_w ) && (n+1 < this->array_h)  && (this->array[m+1][n+1] == true)) {neighbors += 1;}
 
              //Apply rules to the cell:
              if (this->array[m][n] == true && neighbors < 2)
