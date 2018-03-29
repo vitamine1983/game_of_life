@@ -7,4 +7,5 @@ SOURCES += main.cpp \
     life.cpp
 
 HEADERS += \
+    life.h \
     life.h

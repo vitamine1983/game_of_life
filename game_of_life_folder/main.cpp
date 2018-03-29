@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include "life.h"
+
 #define H 30 //Define height
 #define W 30 //Define width
 using namespace std;

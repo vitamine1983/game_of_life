@@ -11,10 +11,10 @@ life::life()
 
 }
 
-life::life(unsigned int x, unsigned int y)
+life::life(unsigned int height, unsigned int width)
 {
-    array_w = x;
-    array_h = y;
+    array_w = width;
+    array_h = height;
 
     this->array = new bool*[array_w];
     for(unsigned int i = 0; i < array_w; i++)
