@@ -60,10 +60,10 @@ int main()
     cout << "4. Any dead cell with exactly three live neighbors comes to life." << endl << endl;
     cout << "To play: Press any key to begin. Enter the column and row of a cell to make \nalive, separated by a space. ";
     cout << "When you are ready, enter \"-1\" to begin the \nsimulation. Then enter any number to continue or \"-1\" to quit." << endl;
-//    cin.get();
+    cin.get();
 
     now->clr();
-    //print(now);
+    print(now);
 
     do //Get initial state
     {
@@ -74,7 +74,7 @@ int main()
         }
         cin >> y;
         now->set_cell_alive(y-1, x-1); //Sets cell to alive
-        //print(now); //Updates screen
+        print(now); //Updates screen
     }while(x != -1);
 
     do //Keep updating new generations
