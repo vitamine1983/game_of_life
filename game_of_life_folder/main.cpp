@@ -1,12 +1,29 @@
 #include "vector"
+#include <sstream>
 #include <iostream>
 #include <iomanip>
 #include <stdlib.h>
 #include "life.h"
+#include <assert.h>
 
 #define Y 5 //Define height
 #define X 10//Define width
 using namespace std;
+
+void print_tst()
+{
+    std::ostringstream oss;
+    std::streambuf* p_cout_streambuf = std::cout.rdbuf();
+    std::cout.rdbuf(oss.rdbuf());
+
+    std::cout << "hello world\n";
+
+    std::cout.rdbuf(p_cout_streambuf); // restore
+
+    // test your oss content...
+    assert(oss && oss.str() == "hello world\n");
+    std::cout << oss.str();
+}
 
 void print(Life * array) //Prints matrix to screen
 {
@@ -41,7 +58,7 @@ int main()
 
     Life * now = new Life(X, Y);
     Life * next = new Life(X, Y);
-
+    print_tst();
     cout << "The Rules of Life:" << endl;
     cout << "1. Any live cell with fewer than two live neighbors dies, as if by loneliness." << endl;
     cout << "2. Any live cell with more than three live neighbors dies, as if by \novercrowding." << endl;
