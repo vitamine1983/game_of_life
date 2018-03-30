@@ -80,19 +80,19 @@ void life::clclt(life * array)
              //Apply rules to the cell:
              if (this->array[m][n] == true && neighbors < 2)
              {
-                array->array[m][n] = 0;
+                array->array[m][n] = false;
              }
              else if (this->array[m][n] == true && neighbors > 3)
              {
-                array->array[m][n] = 0;
+                array->array[m][n] = false;
              }
              else if (this->array[m][n] == true && (neighbors == 2 || neighbors == 3))	//	Keep alive
              {
-                array->array[m][n] = 1;
+                array->array[m][n] = true;
              }
              else if (this->array[m][n] == false && neighbors == 3)	//	Was dead, make alive
              {
-                array->array[m][n] = 1;
+                array->array[m][n] = true;
              }
 
          }

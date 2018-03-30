@@ -2,8 +2,8 @@
 #include <iomanip>
 #include "life.h"
 
-#define Y 30 //Define height
-#define X 1 //Define width
+#define Y 10 //Define height
+#define X 10 //Define width
 using namespace std;
 
 void swap(life * mata, life * matb) //Replaces first matrix with second
