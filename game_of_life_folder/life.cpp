@@ -112,6 +112,8 @@ Life& Life::operator = (const Life &other_life)
   }
   this->array_h = other_life.array_h;
   this->array_w = other_life.array_w;
+  this->array.resize(other_life.array_w, std::vector<bool>(other_life.array_h));
+
   for(unsigned int x = 0; x < this->array_w; x++)
   {
       for(unsigned int y = 0; y < this->array_h; y++)
