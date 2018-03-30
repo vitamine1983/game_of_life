@@ -7,10 +7,20 @@ life::life()
 
     this->array = new bool*[array_w];
     for(unsigned int i = 0; i < array_w; i++)
+    {
         this->array[i] = new bool[array_h];
+    }
 
 }
 
+life::~life()
+{
+    for(unsigned int i = 0; i < array_w; i++)
+    {
+        delete[] array[i];
+    }
+    delete[] array;
+}
 life::life(unsigned int height, unsigned int width)
 {
     array_w = width;

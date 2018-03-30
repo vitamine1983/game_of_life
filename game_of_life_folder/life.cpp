@@ -11,6 +11,15 @@ life::life()
 
 }
 
+life::~life()
+{
+    for(unsigned int i = 0; i < array_w; i++)
+    {
+        delete[] array[i];
+    }
+    delete[] array;
+}
+
 life::life(unsigned int x, unsigned int y)
 {
     array_w = x;
