@@ -102,3 +102,22 @@ void Life::Clclt(Life * array)
          }
      }
 }
+
+Life& Life::operator = (const Life &other_life)
+{
+  // Check for self-assignment!
+  if (this == &other_life)  // Same object?
+  {
+    return *this;
+  }
+  this->array_h = other_life.array_h;
+  this->array_w = other_life.array_w;
+  for(unsigned int x = 0; x < this->array_w; x++)
+  {
+      for(unsigned int y = 0; y < this->array_h; y++)
+      {
+        this->array[x][y] = other_life.array[x][y];
+      }
+  }
+  return *this;
+}

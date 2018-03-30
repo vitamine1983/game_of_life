@@ -19,6 +19,7 @@ public:
 
     void Clr();
     void Clclt(Life * array);
+    Life& operator = (const Life &other_life);
 };
 
 #endif // LIFE_H

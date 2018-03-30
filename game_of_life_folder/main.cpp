@@ -5,26 +5,8 @@
 #include "life.h"
 
 #define Y 5 //Define height
-#define X 5 //Define width
+#define X 10//Define width
 using namespace std;
-
-void swap(Life * mata, Life * matb) //Replaces first matrix with second
-{
-     for (int m = 0; m < X; m++)
-     {
-         for (int n = 0; n < Y; n++)
-         {
-             if(matb->Get_cell_life(m, n))
-             {
-                 mata->Set_cell_alive(m, n);
-             }
-             else
-             {
-                 mata->Set_cell_dead(m, n);
-             }
-         }
-     }
-}
 
 void print(Life * array) //Prints matrix to screen
 {
@@ -33,7 +15,7 @@ void print(Life * array) //Prints matrix to screen
      cout << endl;
      for (unsigned int m = 0; m < array->array_h; m++)
      {
-         cout << setw(3) << m+1;
+         cout << setw(3) << m + 1;
          for (unsigned int n = 0; n < array->array_w; n++)
          {
              if(! (n % 5))
@@ -89,7 +71,8 @@ int main()
     {
         next->Clr();
         now->Clclt(next);
-        swap(now, next);
+        //swap(now, next);
+        *now = *next;
         print(now);
         cout << "Press '-1' to exit"<< endl;
         cin>>cont;
