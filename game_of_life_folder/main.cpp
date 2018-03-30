@@ -1,40 +1,42 @@
+#include "vector"
 #include <iostream>
 #include <iomanip>
+#include <stdlib.h>
 #include "life.h"
 
-#define Y 10 //Define height
-#define X 10 //Define width
+#define Y 5 //Define height
+#define X 5 //Define width
 using namespace std;
 
-void swap(life * mata, life * matb) //Replaces first matrix with second
+void swap(Life * mata, Life * matb) //Replaces first matrix with second
 {
      for (int m = 0; m < X; m++)
      {
          for (int n = 0; n < Y; n++)
          {
-             if(matb->get_cell_life(m, n))
+             if(matb->Get_cell_life(m, n))
              {
-                 mata->set_cell_alive(m, n);
+                 mata->Set_cell_alive(m, n);
              }
              else
              {
-                 mata->set_cell_dead(m, n);
+                 mata->Set_cell_dead(m, n);
              }
          }
      }
 }
 
-void print(life * array) //Prints matrix to screen
+void print(Life * array) //Prints matrix to screen
 {
-//     cout << setw(3) << " ";
-//     for (unsigned int p = 0; 5*p < array->array_w; p++) cout << setw(5) << 5*p+1;
+     cout << setw(3) << " ";
+     for (unsigned int p = 0; 5*p < array->array_w; p++) cout << setw(5) << 5*p+1;
      cout << endl;
      for (unsigned int m = 0; m < array->array_h; m++)
      {
          cout << setw(3) << m+1;
          for (unsigned int n = 0; n < array->array_w; n++)
          {
-             if(! n % 5)
+             if(! (n % 5))
              {
                  cout << "|";
              }
@@ -55,8 +57,8 @@ int main()
 {
     int x, y, cont; //Used for user input
 
-    life * now = new life(X, Y);
-    life * next = new life(X, Y);
+    Life * now = new Life(X, Y);
+    Life * next = new Life(X, Y);
 
     cout << "The Rules of Life:" << endl;
     cout << "1. Any live cell with fewer than two live neighbors dies, as if by loneliness." << endl;
@@ -66,8 +68,9 @@ int main()
     cout << "To play: Press any key to begin. Enter the column and row of a cell to make \nalive, separated by a space. ";
     cout << "When you are ready, enter \"-1\" to begin the \nsimulation. Then enter any number to continue or \"-1\" to quit." << endl;
     cin.get();
-
-    now->clr();
+    cout << "Continue" << endl;
+    now->Clr();
+    cout << "Cleared" << endl;
     print(now);
 
     do //Get initial state
@@ -78,14 +81,14 @@ int main()
             break; //User is done inputting
         }
         cin >> y;
-        now->set_cell_alive(x-1, y-1); //Sets cell to alive
+        now->Set_cell_alive(x-1, y-1); //Sets cell to alive
         print(now); //Updates screen
     }while(x != -1);
 
     do //Keep updating new generations
     {
-        next->clr();
-        now->clclt(next);
+        next->Clr();
+        now->Clclt(next);
         swap(now, next);
         print(now);
         cout << "Press '-1' to exit"<< endl;

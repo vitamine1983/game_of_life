@@ -24,20 +24,20 @@ Test_lifeTest::Test_lifeTest()
 void Test_lifeTest::testCaseCommon()
 {
     const unsigned int X = 10, Y= 12;
-    life *l = new life(X, Y);
-    life *nl = new life(X, Y);
-    l->clr();
-    nl->clr();  //  Clear both matrix to make tests
+    Life *l = new Life(X, Y);
+    Life *nl = new Life(X, Y);
+    l->Clr();
+    nl->Clr();  //  Clear both matrix to make tests
 
-    QVERIFY(l->set_cell_alive(0, 0) == true); //  Make live cell with correct index
-    QVERIFY(l->get_cell_life(0, 0) == true); //  Check if cell alive with correct index
+    QVERIFY(l->Set_cell_alive(0, 0) == true); //  Make live cell with correct index
+    QVERIFY(l->Get_cell_life(0, 0) == true); //  Check if cell alive with correct index
 
-    QVERIFY(l->set_cell_dead(0, 0) == true); //  Make cell dead with correct index
-    QVERIFY(l->get_cell_life(0, 0) == false);//  Get cell not alive with correct index
+    QVERIFY(l->Set_cell_dead(0, 0) == true); //  Make cell dead with correct index
+    QVERIFY(l->Get_cell_life(0, 0) == false);//  Get cell not alive with correct index
 
-    QVERIFY(l->set_cell_alive(0, 0) == true); //  Make live cell with correct index
+    QVERIFY(l->Set_cell_alive(0, 0) == true); //  Make live cell with correct index
     l->clclt(nl);
-    QVERIFY(nl->get_cell_life(0, 0) ==false);//  Cell must be dead
+    QVERIFY(nl->Get_cell_life(0, 0) ==false);//  Cell must be dead
     l->clr();
     nl->clr();  //  Clear both matrix to make tests
 }
@@ -80,10 +80,10 @@ void Test_lifeTest::testCase2()
 {
     //  2. Any live cell with two or three live neighbours lives on to the next generation.
     const unsigned int X = 10, Y= 12;
-    life *l = new life(X, Y);
-    life *nl = new life(X, Y);
-    l->clr();
-    nl->clr();  //  Clear both matrix to make tests
+    Life *l = new Life(X, Y);
+    Life *nl = new Life(X, Y);
+    l->Clr();
+    nl->Clr();  //  Clear both matrix to make tests
     //  Make horisontal test
     /*
     ______
@@ -91,14 +91,14 @@ void Test_lifeTest::testCase2()
     |_|T|_|
     |_|_|_|
     */
-    l->set_cell_alive(0, 0);
-    l->set_cell_alive(1, 0);
-    l->set_cell_alive(2, 0);
-    l->set_cell_alive(1, 1);    //  Cell under test
-    l->clclt(nl);
-    QVERIFY(nl->get_cell_life(1, 1) == true);
-    l->clr();
-    nl->clr();  //  Clear both matrix to make tests
+    l->Set_cell_alive(0, 0);
+    l->Set_cell_alive(1, 0);
+    l->Set_cell_alive(2, 0);
+    l->Set_cell_alive(1, 1);    //  Cell under test
+    l->Clclt(nl);
+    QVERIFY(nl->Get_cell_life(1, 1) == true);
+    l->Clr();
+    nl->Clr();  //  Clear both matrix to make tests
     //  Make vertical test and check with two neighbours
     /*
     ______
@@ -106,14 +106,14 @@ void Test_lifeTest::testCase2()
     |_|T|_|
     |X|_|_|
     */
-    l->set_cell_alive(0, 0);
+    l->Set_cell_alive(0, 0);
     //l->set_cell_alive(0, 1);
-    l->set_cell_alive(0, 2);
-    l->set_cell_alive(1, 1);    //  Cell under test
-    l->clclt(nl);
-    QVERIFY(nl->get_cell_life(1, 1) == true);
-    l->clr();
-    nl->clr();  //  Clear both matrix to make tests
+    l->Set_cell_alive(0, 2);
+    l->Set_cell_alive(1, 1);    //  Cell under test
+    l->Clclt(nl);
+    QVERIFY(nl->Get_cell_life(1, 1) == true);
+    l->Clr();
+    nl->Clr();  //  Clear both matrix to make tests
     //  Make diagonal test
     /*
     ______
@@ -121,24 +121,24 @@ void Test_lifeTest::testCase2()
     |_|T|_|
     |_|_|X|
     */
-    l->set_cell_alive(0, 0);
-    l->set_cell_alive(0, 2);
-    l->set_cell_alive(2, 2);
-    l->set_cell_alive(1, 1);    //  Cell under test
-    l->clclt(nl);
-    QVERIFY(nl->get_cell_life(1, 1) == true);
-    l->clr();
-    nl->clr();  //  Clear both matrix to make tests
+    l->Set_cell_alive(0, 0);
+    l->Set_cell_alive(0, 2);
+    l->Set_cell_alive(2, 2);
+    l->Set_cell_alive(1, 1);    //  Cell under test
+    l->Clclt(nl);
+    QVERIFY(nl->Get_cell_life(1, 1) == true);
+    l->Clr();
+    nl->Clr();  //  Clear both matrix to make tests
 }
 
 void Test_lifeTest::testCase3()
 {
     //  3. Any live cell with more than three live neighbours dies, as if by overcrowding.
     const unsigned int X = 10, Y = 12;
-    life *l = new life(X, Y);
-    life *nl = new life(X, Y);
-    l->clr();
-    nl->clr();  //  Clear both matrix to make tests
+    Life *l = new Life(X, Y);
+    Life *nl = new Life(X, Y);
+    l->Clr();
+    nl->Clr();  //  Clear both matrix to make tests
     //  Make horisontal test
     /*
     ______
@@ -146,15 +146,15 @@ void Test_lifeTest::testCase3()
     |_|T|X|
     |_|_|_|
     */
-    l->set_cell_alive(0, 0);
-    l->set_cell_alive(1, 0);
-    l->set_cell_alive(2, 0);
-    l->set_cell_alive(2, 1);
-    l->set_cell_alive(1, 1);    //  Cell under test
-    l->clclt(nl);
-    QVERIFY(nl->get_cell_life(1, 1) == false);
-    l->clr();
-    nl->clr();  //  Clear both matrix to make tests
+    l->Set_cell_alive(0, 0);
+    l->Set_cell_alive(1, 0);
+    l->Set_cell_alive(2, 0);
+    l->Set_cell_alive(2, 1);
+    l->Set_cell_alive(1, 1);    //  Cell under test
+    l->Clclt(nl);
+    QVERIFY(nl->Get_cell_life(1, 1) == false);
+    l->Clr();
+    nl->Clr();  //  Clear both matrix to make tests
     ////////////////////////////////////////////////////////////////////////
     //  Make vertical test
     /*
@@ -163,15 +163,15 @@ void Test_lifeTest::testCase3()
     |_|T|_|
     |_|X|_|
     */
-    l->set_cell_alive(0, 0);
-    l->set_cell_alive(0, 1);
-    l->set_cell_alive(1, 0);
-    l->set_cell_alive(0, 2);
-    l->set_cell_alive(1, 1);    //  Cell under test
-    l->clclt(nl);
-    QVERIFY(nl->get_cell_life(1, 1) == false);
-    l->clr();
-    nl->clr();  //  Clear both matrix to make tests
+    l->Set_cell_alive(0, 0);
+    l->Set_cell_alive(0, 1);
+    l->Set_cell_alive(1, 0);
+    l->Set_cell_alive(0, 2);
+    l->Set_cell_alive(1, 1);    //  Cell under test
+    l->Clclt(nl);
+    QVERIFY(nl->Get_cell_life(1, 1) == false);
+    l->Clr();
+    nl->Clr();  //  Clear both matrix to make tests
 }
 
 void Test_lifeTest::testCase4()
@@ -179,10 +179,10 @@ void Test_lifeTest::testCase4()
 
     //  4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
     const unsigned int X = 10, Y= 12;
-    life *l = new life(X, Y);
-    life *nl = new life(X, Y);
-    l->clr();
-    nl->clr();  //  Clear both matrix to make tests
+    Life *l = new Life(X, Y);
+    Life *nl = new Life(X, Y);
+    l->Clr();
+    nl->Clr();  //  Clear both matrix to make tests
     //  Make horisontal test
     /*
     ______
@@ -190,13 +190,13 @@ void Test_lifeTest::testCase4()
     |_|T|_|
     |_|X|_|
     */
-    l->set_cell_alive(0, 0);
-    l->set_cell_alive(1, 0);
-    l->set_cell_alive(2, 0);
-    l->clclt(nl);
-    QVERIFY(nl->get_cell_life(1, 1) == true);
-    l->clr();
-    nl->clr();  //  Clear both matrix to make tests
+    l->Set_cell_alive(0, 0);
+    l->Set_cell_alive(1, 0);
+    l->Set_cell_alive(2, 0);
+    l->Clclt(nl);
+    QVERIFY(nl->Get_cell_life(1, 1) == true);
+    l->Clr();
+    nl->Clr();  //  Clear both matrix to make tests
     //  Make vertical test
     /*
     ______
@@ -204,13 +204,13 @@ void Test_lifeTest::testCase4()
     |_|T|_|
     |_|X|_|
     */
-    l->set_cell_alive(0, 0);
-    l->set_cell_alive(0, 1);
-    l->set_cell_alive(0, 2);
-    l->clclt(nl);
-    QVERIFY(nl->get_cell_life(1, 1) == true);
-    l->clr();
-    nl->clr();  //  Clear both matrix to make tests
+    l->Set_cell_alive(0, 0);
+    l->Set_cell_alive(0, 1);
+    l->Set_cell_alive(0, 2);
+    l->Clclt(nl);
+    QVERIFY(nl->Get_cell_life(1, 1) == true);
+    l->Clr();
+    nl->Clr();  //  Clear both matrix to make tests
     //  Make diagonal test
     /*
     ______
@@ -218,13 +218,13 @@ void Test_lifeTest::testCase4()
     |_|T|_|
     |_|X|_|
     */
-    l->set_cell_alive(0, 0);
-    l->set_cell_alive(0, 2);
-    l->set_cell_alive(2, 2);
-    l->clclt(nl);
-    QVERIFY(nl->get_cell_life(1, 1) == true);
-    l->clr();
-    nl->clr();  //  Clear both matrix to make tests
+    l->Set_cell_alive(0, 0);
+    l->Set_cell_alive(0, 2);
+    l->Set_cell_alive(2, 2);
+    l->Clclt(nl);
+    QVERIFY(nl->Get_cell_life(1, 1) == true);
+    l->Clr();
+    nl->Clr();  //  Clear both matrix to make tests
 }
 QTEST_APPLESS_MAIN(Test_lifeTest)
 

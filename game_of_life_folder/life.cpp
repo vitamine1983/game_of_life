@@ -1,74 +1,69 @@
+#include "vector"
 #include "life.h"
 
-life::life()
+Life::Life()
 {
     array_w = 30;
     array_h = 30;
 
-    this->array = new bool*[array_w];
-    for(unsigned int i = 0; i < array_w; i++)
-        this->array[i] = new bool[array_h];
-
+    array.resize(array_w, std::vector<bool>(array_h));
 }
 
-life::~life()
+Life::~Life()
 {
-    for(unsigned int i = 0; i < array_w; i++)
-    {
-        delete[] array[i];
-    }
-    delete[] array;
+    //  Nenaudojam delete, nes nera malloc
 }
 
-life::life(unsigned int x, unsigned int y)
+Life::Life(unsigned int x, unsigned int y)
 {
     array_w = x;
     array_h = y;
 
-    this->array = new bool*[array_w];
-    for(unsigned int i = 0; i < array_w; i++)
-        this->array[i] = new bool[array_h];
+    array.resize(array_w, std::vector<bool>(array_h));
 }
 
-void life::clr() //Sets matrix to all dead
+void Life::Clr() //Sets matrix to all dead
 {
     for (unsigned int m = 0; m < this->array_w; m++)
     {
         for (unsigned int n = 0; n < this->array_h; n++)
         {
-            this->array[m][n] = false;  //  there is dynamic array we unable to use memsed
+            this->array[m][n] = false;
         }
     }
 }
-char life::set_cell_alive(unsigned int x, unsigned int y)
+char Life::Set_cell_alive(unsigned int x, unsigned int y)
 {
     if(x < this->array_w && y < this->array_h)
     {
         this->array[x][y] = true;
         return 1;
     }
+
     return 0;
 }
 
-char life::set_cell_dead(unsigned int x, unsigned int y)
+char Life::Set_cell_dead(unsigned int x, unsigned int y)
 {
     if(x < this->array_w && y < this->array_h)
     {
-        this->array[x][y] = 0;
+        this->array[x][y] = false;
         return 1;
     }
+
     return 0;
 }
 
-bool life::get_cell_life(unsigned int x, unsigned int y)
+bool Life::Get_cell_life(unsigned int x, unsigned int y)
 {
     if(x < this->array_w && y < this->array_h)
     {
         return this->array[x][y];
     }
+
     return 0;
 }
-void life::clclt(life * array)
+void Life::Clclt(Life * array)
 {
      unsigned int neighbors;
      for (unsigned int m = 0; m < this->array_w; m++)
