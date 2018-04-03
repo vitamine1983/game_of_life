@@ -8,14 +8,15 @@
 /*! The game of life class */
 class Life
 {
-public:
+private:
        //! Life array for calculations
+//    std::vector<std::vector<bool>> array;
     std::vector<std::vector<bool>> array;
+public:
     //! Life array for calculations height
     unsigned int array_h;
     //! Life array for calculations width
     unsigned int array_w;
-public:
     //! Life constructor which initializes life with 30x30 matrix.
     /*!
       \return life matrix object

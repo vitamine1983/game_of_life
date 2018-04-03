@@ -69,9 +69,6 @@ int main()
     cout << "When you are ready, enter \"-1\" to begin the \nsimulation. Then enter any number to continue or \"-1\" to quit." << endl;
     cin.get();
     cout << "Continue" << endl;
-    now.Clr();
-    next.Clr();
-    cout << "Cleared" << endl;
     print(&now);
 
     do //Get initial state

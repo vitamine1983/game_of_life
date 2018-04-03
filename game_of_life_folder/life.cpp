@@ -3,8 +3,8 @@
 
 Life::Life()
 {
-    array_w = 30;
-    array_h = 30;
+    array_w = 10;
+    array_h = 10;
 
     array.resize(array_w, std::vector<bool>(array_h));
 }
