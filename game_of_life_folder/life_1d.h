@@ -3,7 +3,6 @@
 
 #include "vector"
 
-/*! The game of life 1D class */
 class Life_1D
 {
 private:
@@ -18,6 +17,7 @@ public:
     bool Get_cell_life(unsigned int x, unsigned int y);     //!< Returns cell alive status
     void Clr();
     void Clclt(Life_1D * array);
+    void Randomize();
     Life_1D& operator = (const Life_1D &other_life);  //!< Equation opeerator override
 };
 

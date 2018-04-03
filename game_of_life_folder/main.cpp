@@ -7,8 +7,8 @@
 #include "life_1d.h"
 #include <assert.h>
 
-#define Y 5 //Define height
-#define X 10//Define width
+//#define Y 5 //Define height
+//#define X 10//Define width
 using namespace std;
 
 void print_tst()
@@ -69,9 +69,6 @@ int main()
     cout << "When you are ready, enter \"-1\" to begin the \nsimulation. Then enter any number to continue or \"-1\" to quit." << endl;
     cin.get();
     cout << "Continue" << endl;
-    now.Clr();
-    next.Clr();
-    cout << "Cleared" << endl;
     print(&now);
 
     do //Get initial state
@@ -83,22 +80,7 @@ int main()
         }
         if(x == -2)
         {
-            srand(time(NULL));
-            for(unsigned int w = 0; w < now.array_w; w++)
-            {
-                for(unsigned int h = 0; h < now.array_h; h++)
-                {
-                    unsigned int var = rand();
-                    if(var % 2)
-                    {
-                        now.Set_cell_alive(w, h);
-                    }
-                    else
-                    {
-                        now.Set_cell_dead(w, h);
-                    }
-                }
-            }
+            now.Randomize();
         }
         else
         {
@@ -116,7 +98,7 @@ int main()
         now = next;
         print(&now);
         cout << "Press '-1' to exit"<< endl;
-        cin>>cont;
+        cin >> cont;
     }while(cont != -1);
 
     return 0;

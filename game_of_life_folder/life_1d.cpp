@@ -1,5 +1,7 @@
 #include "life_1d.h"
 #include "vector"
+#include <stdlib.h>
+#include <time.h>
 
 
 Life_1D::Life_1D()
@@ -42,6 +44,7 @@ void Life_1D::Clr() //Sets matrix to all dead
         }
     }
 }
+
 char Life_1D::Set_cell_alive(unsigned int x, unsigned int y)
 {
     if(x < this->array_w && y < this->array_h)
@@ -73,6 +76,7 @@ bool Life_1D::Get_cell_life(unsigned int x, unsigned int y)
 
     return 0;
 }
+
 void Life_1D::Clclt(Life_1D * array)
 {
      unsigned int neighbors;
@@ -132,6 +136,27 @@ void Life_1D::Clclt(Life_1D * array)
              }
          }
      }
+}
+
+void Life_1D::Randomize()
+{
+    srand(time(NULL));
+    for(unsigned int w = 0; w < array_w; w++)
+    {
+        for(unsigned int h = 0; h < array_h; h++)
+        {
+            unsigned int var = rand();
+            if(var % 2)
+            {
+                this->Set_cell_alive(w, h);
+            }
+            else
+            {
+                this->Set_cell_dead(w, h);
+            }
+        }
+    }
+
 }
 
 Life_1D& Life_1D::operator = (const Life_1D &other_life)
