@@ -9,8 +9,11 @@
 class Life
 {
 public:
+       //! Life array for calculations
     std::vector<std::vector<bool>> array;
+    //! Life array for calculations height
     unsigned int array_h;
+    //! Life array for calculations width
     unsigned int array_w;
 public:
     //! Life constructor which initializes life with 30x30 matrix.
@@ -54,7 +57,9 @@ public:
     bool Get_cell_life(unsigned int x, unsigned int y);     //!< Returns cell alive status
 
     //! Clears life cells
-    //!
+    /*!
+     * \brief Clears life matrix array
+     */
     void Clr();
 
     //!
