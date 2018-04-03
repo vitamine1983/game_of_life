@@ -66,6 +66,10 @@ bool Life::Get_cell_life(unsigned int x, unsigned int y)
 void Life::Clclt(Life * array)
 {
      unsigned int neighbors;
+     if(array == nullptr)
+     {
+         return;
+     }
      for (unsigned int m = 0; m < this->array_w; m++)
      {
          for (unsigned int n = 0; n < this->array_h; n++)
@@ -106,6 +110,10 @@ void Life::Clclt(Life * array)
 Life& Life::operator = (const Life &other_life)
 {
   // Check for self-assignment!
+    if(&other_life == nullptr)
+    {
+        return *this;
+    }
   if (this == &other_life)  // Same object?
   {
     return *this;
