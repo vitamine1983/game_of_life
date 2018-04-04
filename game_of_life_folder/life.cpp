@@ -137,7 +137,6 @@ void Life::Randomize()
 char * Life::ToString()
 {
     memset(output, 0, sizeof(output));
-    strcat_s(output, sizeof(output), "\r\n");
     for (unsigned int m = 0; m < array_h; m++)
     {
         for (unsigned int n = 0; n < array_w; n++)
@@ -148,12 +147,11 @@ char * Life::ToString()
             }
             else
             {
-                strcat_s(output, sizeof(output), /*"\xB1"*/"-");
+                strcat_s(output, sizeof(output), "-");
             }
         }
         strcat_s(output, sizeof(output), "\r\n");
     }
-    strcat_s(output, sizeof(output), "\r\n");
     return output;
 }
 

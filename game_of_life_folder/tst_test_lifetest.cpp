@@ -2,6 +2,7 @@
 #include <QtTest>
 #include "life.h"
 #include "life_1d.h"
+#include "generation.h"
 
 class Test_lifeTest : public QObject
 {
@@ -332,9 +333,9 @@ void Test_lifeTest::testToString()
 {
     Life l;
     l.Clr();
-    char empty[] = "\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n";
-
-    QVERIFY(l.ToString() == empty);
+    char empty[] = "----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n";
+    char * data = l.ToString();
+    QVERIFY(QString(data) == QString(empty));
 }
 ///////////////////////////////////////////////
 Test_life_1D_Test::Test_life_1D_Test()
@@ -608,23 +609,69 @@ void Test_life_1D_Test::testEqualOp_1D()
 void Test_life_1D_Test::testToString_1D()
 {
     Life_1D l;
-    Life_1D nl;
     l.Clr();
-    nl.Clr();  //  Clear both matrix to make tests
-    char empty[] = "----------\
-            ----------\
-            ----------\
-            ----------\
-            ----------\
-            ----------\
-            ----------\
-            ----------\
-            ----------\
-            ----------";
-    QVERIFY(l.ToString() == empty);
+    char empty[] = "----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n";
+    char * data = l.ToString();
+    QVERIFY(QString(data) == QString(empty));
+
 }
 
-QTEST_APPLESS_MAIN(Test_lifeTest)
+class Test_Generation : public QObject
+{
+    Q_OBJECT
+
+public:
+    Test_Generation();
+
+private Q_SLOTS:
+    void test_generate();
+    void test_initialize();
+};
+
+Test_Generation::Test_Generation()
+{
+
+}
+
+void Test_Generation::test_initialize()
+{
+    Life l, nl;
+    bool initialized = false;
+    generation::initialize(&l);
+    for(unsigned int x = 0; x < l.array_w; x++)
+    {
+        for(unsigned int y = 0; y < l.array_h; y++)
+        {
+            if(l.Get_cell_life(x, y))
+            {
+                initialized = true;
+            }
+        }
+    }
+    QVERIFY(initialized);
+    initialized = false;
+
+    generation::generate(&nl);
+    for(unsigned int x = 0; x < l.array_w; x++)
+    {
+        for(unsigned int y = 0; y < l.array_h; y++)
+        {
+            if(l.Get_cell_life(x, y) != nl.Get_cell_life(x, y))
+            {
+                initialized = true;
+            }
+        }
+    }
+    QVERIFY(initialized);
+}
+
+void Test_Generation::test_generate()
+{
+    QVERIFY(1);
+}
+
+//QTEST_APPLESS_MAIN(Test_lifeTest)
 //QTEST_APPLESS_MAIN(Test_life_1D_Test)
+QTEST_APPLESS_MAIN(Test_Generation)
 
 #include "tst_test_lifetest.moc"

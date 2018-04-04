@@ -29,11 +29,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         tst_test_lifetest.cpp \  
     life.cpp \
-    life_1d.cpp
+    life_1d.cpp \
+    generation.cpp
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
 HEADERS += \
     life.h \
     life_1d.h \
-    life_1d_test.h
+    life_1d_test.h \
+    generation.h
