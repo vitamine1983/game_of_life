@@ -4,18 +4,9 @@
 #include <time.h>
 #include "string.h"
 
-Life_1D::Life_1D()
+Life_1D::Life_1D():array_h(10), array_w(10)
 {
-    array_w = 10;
-    array_h = 10;
-    array.resize(array_w * array_h);
-    for(unsigned int x = 0; x < array_w; x++)
-    {
-        for(unsigned int y = 0; y < array_h; y++)
-        {
-            array[x * array_w + y] = false;
-        }
-    }
+    array.resize(array_w * array_h, false);
 }
 
 Life_1D::Life_1D(unsigned int x, unsigned int y)
@@ -23,26 +14,12 @@ Life_1D::Life_1D(unsigned int x, unsigned int y)
     array_w = x;
     array_h = y;
 
-    array.resize(array_w * array_h);
-
-    for(unsigned int x = 0; x < array_w; x++)
-    {
-        for(unsigned int y = 0; y < array_h; y++)
-        {
-            array[x * array_w + y] = false;
-        }
-    }
+    array.resize(array_w * array_h, false);
 }
 
 void Life_1D::Clr() //Sets matrix to all dead
 {
-    for(unsigned int x = 0; x < array_w; x++)
-    {
-        for(unsigned int y = 0; y < array_h; y++)
-        {
-            array[x * array_w + y] = false;
-        }
-    }
+    array.resize(array_w * array_h, false);
 }
 
 char Life_1D::Set_cell_alive(unsigned int x, unsigned int y)
