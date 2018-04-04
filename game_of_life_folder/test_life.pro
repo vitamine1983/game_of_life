@@ -35,4 +35,5 @@ DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
 HEADERS += \
     life.h \
-    life_1d.h
+    life_1d.h \
+    life_1d_test.h

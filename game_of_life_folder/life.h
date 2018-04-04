@@ -20,6 +20,7 @@ public:
     void Clclt(Life * array);
     void Randomize();
 
+    char * ToString();
     Life& operator = (const Life &other_life);  //!< Equation opeerator override
 };
 

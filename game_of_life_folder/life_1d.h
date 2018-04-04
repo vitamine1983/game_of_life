@@ -18,6 +18,7 @@ public:
     void Clr();
     void Clclt(Life_1D * array);
     void Randomize();
+    char * ToString();
     Life_1D& operator = (const Life_1D &other_life);  //!< Equation opeerator override
 };
 

@@ -2,7 +2,10 @@
 #include "life.h"
 #include <stdlib.h>
 #include <time.h>
+#include "string.h"
+#include<string>
 
+char output[4096];
 
 Life::Life()
 {
@@ -129,6 +132,29 @@ void Life::Randomize()
         }
     }
 
+}
+
+char * Life::ToString()
+{
+    memset(output, 0, sizeof(output));
+    strcat_s(output, sizeof(output), "\r\n");
+    for (unsigned int m = 0; m < array_h; m++)
+    {
+        for (unsigned int n = 0; n < array_w; n++)
+        {
+            if (this->Get_cell_life(n, m))
+            {
+                strcat_s(output, sizeof(output), "\xDB");
+            }
+            else
+            {
+                strcat_s(output, sizeof(output), /*"\xB1"*/"-");
+            }
+        }
+        strcat_s(output, sizeof(output), "\r\n");
+    }
+    strcat_s(output, sizeof(output), "\r\n");
+    return output;
 }
 
 Life& Life::operator = (const Life &other_life)
