@@ -4,8 +4,6 @@
 #include <time.h>
 #include "string.h"
 
-char life_1d_output[4096];
-
 Life_1D::Life_1D()
 {
     array_w = 10;
@@ -161,27 +159,25 @@ void Life_1D::Randomize()
 
 }
 
-char * Life_1D::ToString()
+std::string Life_1D::ToString()
 {
-    memset(life_1d_output, 0, sizeof(life_1d_output));
-    strcat_s(life_1d_output, sizeof(life_1d_output), "\r\n");
+    str.clear();
     for (unsigned int m = 0; m < array_h; m++)
     {
         for (unsigned int n = 0; n < array_w; n++)
         {
             if (this->Get_cell_life(n, m))
             {
-                strcat_s(life_1d_output, sizeof(life_1d_output), "\xDB");
+                str += "\xDB";
             }
             else
             {
-                strcat_s(life_1d_output, sizeof(life_1d_output), /*"\xB1"*/"-");
+                str += "-";
             }
         }
-        strcat_s(life_1d_output, sizeof(life_1d_output), "\r\n");
+        str += "\r\n";
     }
-    strcat_s(life_1d_output, sizeof(life_1d_output), "\r\n");
-    return life_1d_output;
+    return str;
 }
 
 Life_1D& Life_1D::operator = (const Life_1D &other_life)

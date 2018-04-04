@@ -2,11 +2,13 @@
 #define LIFE_1D_H
 
 #include "vector"
+#include "string"
 
 class Life_1D
 {
 private:
     std::vector<bool> array;
+    std::string str;
 public:
     unsigned int array_h;
     unsigned int array_w;
@@ -18,7 +20,7 @@ public:
     void Clr();
     void Clclt(Life_1D * array);
     void Randomize();
-    char * ToString();
+    std::string ToString();
     Life_1D& operator = (const Life_1D &other_life);  //!< Equation opeerator override
 };
 

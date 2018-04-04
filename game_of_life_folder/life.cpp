@@ -5,8 +5,6 @@
 #include "string.h"
 #include<string>
 
-char output[4096];
-
 Life::Life()
 {
     array_w = 10;
@@ -134,25 +132,25 @@ void Life::Randomize()
 
 }
 
-char * Life::ToString()
+std::string Life::ToString()
 {
-    memset(output, 0, sizeof(output));
+    str.clear();
     for (unsigned int m = 0; m < array_h; m++)
     {
         for (unsigned int n = 0; n < array_w; n++)
         {
             if (this->Get_cell_life(n, m))
             {
-                strcat_s(output, sizeof(output), "\xDB");
+                str += "\xDB";
             }
             else
             {
-                strcat_s(output, sizeof(output), "-");
+                str += "-";
             }
         }
-        strcat_s(output, sizeof(output), "\r\n");
+        str += "\r\n";
     }
-    return output;
+    return str;
 }
 
 Life& Life::operator = (const Life &other_life)
