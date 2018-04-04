@@ -27,6 +27,8 @@ private Q_SLOTS:
     void testCase2_d();
     void testCase4_d();
 
+    void testToString();
+
     void testEqualOp();
 };
 
@@ -55,6 +57,7 @@ private Q_SLOTS:
     void testCase4_d_1D();
 
     void testEqualOp_1D();
+    void testToString_1D();
 };
 
 Test_lifeTest::Test_lifeTest()
@@ -325,6 +328,14 @@ void Test_lifeTest::testEqualOp()
     nl.Clr();  //  Clear both matrix to make tests
 }
 
+void Test_lifeTest::testToString()
+{
+    Life l;
+    l.Clr();
+    char empty[] = "\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n";
+
+    QVERIFY(l.ToString() == empty);
+}
 ///////////////////////////////////////////////
 Test_life_1D_Test::Test_life_1D_Test()
 {
@@ -580,8 +591,6 @@ void Test_life_1D_Test::testCase4_d_1D()
     nl.Clr();  //  Clear both matrix to make tests
 }
 
-
-
 void Test_life_1D_Test::testEqualOp_1D()
 {
     Life_1D l;
@@ -594,6 +603,25 @@ void Test_life_1D_Test::testEqualOp_1D()
     QVERIFY(nl.Get_cell_life(0, 0) == true);   //  Check if cell is alive
     l.Clr();
     nl.Clr();  //  Clear both matrix to make tests
+}
+
+void Test_life_1D_Test::testToString_1D()
+{
+    Life_1D l;
+    Life_1D nl;
+    l.Clr();
+    nl.Clr();  //  Clear both matrix to make tests
+    char empty[] = "----------\
+            ----------\
+            ----------\
+            ----------\
+            ----------\
+            ----------\
+            ----------\
+            ----------\
+            ----------\
+            ----------";
+    QVERIFY(l.ToString() == empty);
 }
 
 QTEST_APPLESS_MAIN(Test_lifeTest)

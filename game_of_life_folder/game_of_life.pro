@@ -8,9 +8,11 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     life.cpp \
-    life_1d.cpp
+    life_1d.cpp \
+    generation.cpp
 
 HEADERS += \
     life.h \
     life.h \
-    life_1d.h
+    life_1d.h \
+    generation.h
