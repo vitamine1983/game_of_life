@@ -36,17 +36,129 @@ void generation::initialize(Life_1D * l)
 
 void generation::generate(Life * l)
 {
-    Life next = *l;
+    Life next = *l;  //  Cia tam, kad nustatyti dydi kaip ir 'l'
     next.Clr();
-    l->Clclt(&next);
+
+    unsigned int neighbors;
+
+    for (unsigned int m = 0; m < l->array_w; m++)
+    {
+        for (unsigned int n = 0; n < l->array_h; n++)
+        {
+            neighbors = 0;
+            //Begin counting number of neighbors:
+            if (((int)m-1 >=0 ) && ((int)n-1 >= 0) && (l->Get_cell_life(m-1, n-1) == true))
+            {
+                neighbors += 1;
+            }
+            if (((int)m-1 >=0 ) 			  && (l->Get_cell_life(m-1, n) == true))
+            {
+                neighbors += 1;
+            }
+            if (((int)m-1 >=0 ) && (n+1 < l->array_h)  && (l->Get_cell_life(m-1, n+1) == true))
+            {
+                neighbors += 1;
+            }
+            if (              ((int)n-1 >= 0) && (l->Get_cell_life(m, n-1) == true))
+            {
+                neighbors += 1;
+            }
+            if (              (n+1 < l->array_h)  && (l->Get_cell_life(m, n+1) == true))
+            {
+                              neighbors += 1;
+            }
+            if ((m+1 < l->array_w ) && ((int)n-1 >= 0) && (l->Get_cell_life(m+1, n-1) == true))
+            {neighbors += 1;}
+            if ((m+1 < l->array_w )               && (l->Get_cell_life(m+1, n) == true))
+            {neighbors += 1;}
+            if ((m+1 < l->array_w ) && (n+1 < l->array_h)  && (l->Get_cell_life(m+1, n+1) == true))
+            {neighbors += 1;}
+
+
+            //Apply rules to the cell:
+                 if (l->Get_cell_life(m, n) == true && neighbors < 2)
+            {
+               next.Set_cell_dead(m, n);
+            }
+            else if (l->Get_cell_life(m, n) == true && neighbors > 3)
+            {
+               next.Set_cell_dead(m, n);
+            }
+            else if (l->Get_cell_life(m, n) == true && (neighbors == 2 || neighbors == 3))	//	Keep alive
+            {
+               next.Set_cell_alive(m, n);
+            }
+            else if (l->Get_cell_life(m, n) == false && neighbors == 3)	//	Was dead, make alive
+            {
+               next.Set_cell_alive(m, n);
+            }
+        }
+    }
+
     *l = next;
 }
 
 void generation::generate(Life_1D * l)
 {
-    Life_1D next = *l;
+    Life_1D next = *l;  //  Cia tam, kad nustatyti dydi kaip ir 'l'
     next.Clr();
-    l->Clclt(&next);
+
+    unsigned int neighbors;
+
+    for (unsigned int m = 0; m < l->array_w; m++)
+    {
+        for (unsigned int n = 0; n < l->array_h; n++)
+        {
+            neighbors = 0;
+            //Begin counting number of neighbors:
+            if (((int)m-1 >=0 ) && ((int)n-1 >= 0) && (l->Get_cell_life(m-1, n-1) == true))
+            {
+                neighbors += 1;
+            }
+            if (((int)m-1 >=0 ) 			  && (l->Get_cell_life(m-1, n) == true))
+            {
+                neighbors += 1;
+            }
+            if (((int)m-1 >=0 ) && (n+1 < l->array_h)  && (l->Get_cell_life(m-1, n+1) == true))
+            {
+                neighbors += 1;
+            }
+            if (              ((int)n-1 >= 0) && (l->Get_cell_life(m, n-1) == true))
+            {
+                neighbors += 1;
+            }
+            if (              (n+1 < l->array_h)  && (l->Get_cell_life(m, n+1) == true))
+            {
+                              neighbors += 1;
+            }
+            if ((m+1 < l->array_w ) && ((int)n-1 >= 0) && (l->Get_cell_life(m+1, n-1) == true))
+            {neighbors += 1;}
+            if ((m+1 < l->array_w )               && (l->Get_cell_life(m+1, n) == true))
+            {neighbors += 1;}
+            if ((m+1 < l->array_w ) && (n+1 < l->array_h)  && (l->Get_cell_life(m+1, n+1) == true))
+            {neighbors += 1;}
+
+
+            //Apply rules to the cell:
+                 if (l->Get_cell_life(m, n) == true && neighbors < 2)
+            {
+               next.Set_cell_dead(m, n);
+            }
+            else if (l->Get_cell_life(m, n) == true && neighbors > 3)
+            {
+               next.Set_cell_dead(m, n);
+            }
+            else if (l->Get_cell_life(m, n) == true && (neighbors == 2 || neighbors == 3))	//	Keep alive
+            {
+               next.Set_cell_alive(m, n);
+            }
+            else if (l->Get_cell_life(m, n) == false && neighbors == 3)	//	Was dead, make alive
+            {
+               next.Set_cell_alive(m, n);
+            }
+        }
+    }
+
     *l = next;
 }
 
