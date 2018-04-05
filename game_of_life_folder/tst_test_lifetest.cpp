@@ -4,6 +4,10 @@
 #include "life_1d.h"
 #include "generation.h"
 
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+
 class Test_lifeTest : public QObject
 {
     Q_OBJECT
@@ -333,9 +337,9 @@ void Test_lifeTest::testToString()
 {
     Life l;
     l.Clr();
-    char empty[] = "----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n";
-    char * data = l.ToString();
-    QVERIFY(QString(data) == QString(empty));
+    std::string empty = "----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n";
+    std::string data = l.ToString();
+    QVERIFY(data == empty);
 }
 ///////////////////////////////////////////////
 Test_life_1D_Test::Test_life_1D_Test()
@@ -610,9 +614,9 @@ void Test_life_1D_Test::testToString_1D()
 {
     Life_1D l;
     l.Clr();
-    char empty[] = "----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n";
-    char * data = l.ToString();
-    QVERIFY(QString(data) == QString(empty));
+    std::string empty = "----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n";
+    std::string data = l.ToString();
+    QVERIFY(data == empty);
 
 }
 
@@ -652,6 +656,25 @@ void Test_Generation::test_initialize()
     initialized = false;
 
     generation::generate(&nl);
+    for(unsigned int x = 0; x < l.array_w; x++)
+    {
+        for(unsigned int y = 0; y < l.array_h; y++)
+        {
+            if(l.Get_cell_life(x, y) != nl.Get_cell_life(x, y))
+            {
+                initialized = true;
+            }
+        }
+    }
+    QVERIFY(initialized);
+    nl = l;
+    //  run testing
+    std::cin.putback('1');
+    std::cin.putback('-');
+    std::cin.putback('1');
+    generation::run(&l);
+    initialized = false;
+
     for(unsigned int x = 0; x < l.array_w; x++)
     {
         for(unsigned int y = 0; y < l.array_h; y++)
