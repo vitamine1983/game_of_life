@@ -337,9 +337,9 @@ void Test_lifeTest::testToString()
 {
     Life l;
     l.Clr();
-    std::string empty = "----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n";
-    std::string data = l.ToString();
-    QVERIFY(data == empty);
+    std::string Expected_result = "----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n";
+    std::string Calculated_Result = l.ToString();
+    QVERIFY(Expected_result == Calculated_Result);
 }
 ///////////////////////////////////////////////
 Test_life_1D_Test::Test_life_1D_Test()
@@ -614,9 +614,9 @@ void Test_life_1D_Test::testToString_1D()
 {
     Life_1D l;
     l.Clr();
-    std::string empty = "----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n";
-    std::string data = l.ToString();
-    QVERIFY(data == empty);
+    std::string Expected_result = "----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n----------\r\n";
+    std::string Calculated_Result = l.ToString();
+    QVERIFY(Expected_result == Calculated_Result);
 
 }
 
@@ -693,8 +693,8 @@ void Test_Generation::test_generate()
     QVERIFY(1);
 }
 
-//QTEST_APPLESS_MAIN(Test_lifeTest)
+QTEST_APPLESS_MAIN(Test_lifeTest)
 //QTEST_APPLESS_MAIN(Test_life_1D_Test)
-QTEST_APPLESS_MAIN(Test_Generation)
+//QTEST_APPLESS_MAIN(Test_Generation)
 
 #include "tst_test_lifetest.moc"

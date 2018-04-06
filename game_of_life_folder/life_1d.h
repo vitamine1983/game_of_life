@@ -8,7 +8,6 @@ class Life_1D
 {
 private:
     std::vector<bool> array;
-    std::string str;
 public:
     unsigned int array_h;
     unsigned int array_w;

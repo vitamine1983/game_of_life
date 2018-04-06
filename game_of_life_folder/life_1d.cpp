@@ -138,6 +138,7 @@ void Life_1D::Randomize()
 
 std::string Life_1D::ToString()
 {
+    std::string str;
     str.clear();
     for (unsigned int m = 0; m < array_h; m++)
     {
@@ -171,13 +172,14 @@ Life_1D& Life_1D::operator = (const Life_1D &other_life)
   this->array_h = other_life.array_h;
   this->array_w = other_life.array_w;
   array.resize(array_w * array_h);
+  this->array.assign(other_life.array.begin(), other_life.array.end());
 
-  for(unsigned int x = 0; x < this->array_w; x++)
-  {
-      for(unsigned int y = 0; y < this->array_h; y++)
-      {
-        this->array[x * array_w + y] = other_life.array[x * array_w + y];
-      }
-  }
+//  for(unsigned int x = 0; x < this->array_w; x++)
+//  {
+//      for(unsigned int y = 0; y < this->array_h; y++)
+//      {
+//        this->array[x * array_w + y] = other_life.array[x * array_w + y];
+//      }
+//  }
   return *this;
 }

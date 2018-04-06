@@ -134,6 +134,7 @@ void Life::Randomize()
 
 std::string Life::ToString()
 {
+    std::string str;
     str.clear();
     for (unsigned int m = 0; m < array_h; m++)
     {
